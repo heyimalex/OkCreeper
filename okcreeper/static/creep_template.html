@@ -1,0 +1,67 @@
+<span class='error' ng-show="response.error">
+    {{ response.error }}
+</span>
+
+<div ng-show="response.username">
+    <h2 id="un">
+        {{ response.username }}
+    </h2>
+
+    <p id='details'>
+        {{ response.info }}<br>
+        <span ng-show="response.replies">
+        Replies <span style="color:{{ response.replies.color }};">{{ response.replies.message }}</span>
+        </span>
+    </p>
+
+    <br>
+    <table>
+        <tr ng-repeat="detail in response.details">
+            <td>{{detail.name}}</td>
+            <td>{{detail.value}}</td>
+        </tr>
+    </table>
+
+    <div class='essay' ng-repeat="essay in response.essays">
+        <span class='essayTitle'>{{ essay.title }}</span>
+        <p ng-bind-html-unsafe='essay.content'></p>
+    </div>
+
+    <div class='essay' ng-show="response.looking_for">
+        <span class='essayTitle'>I&rsquo;m looking for</span>
+        <ul>
+                <li ng-repeat="li in response.looking_for">
+                    {{li}}
+                </li>
+        </ul>
+    </div>
+
+    <br>
+
+    <div class='imgContainer' ng-repeat="photo in response.photos">
+        <img ng-src='{{ photo }}'>
+    </div>
+
+    <div id='questionswrapper'>
+
+        <div id='questionstop' ng-show='questions.length > 0'>
+            <h3>OkCreeper has found {{questions.length}} out of {{total_questions}} questions that {{response.username}} has answered</h3>
+            Search : <input ng-model="query">
+        </div>
+        
+        <div ng-repeat='question in questions | filter:query'>
+            <b>Q:</b> {{ question.question }}<br>
+            <b>A:</b> {{ question.answer }}<br>
+            <p ng-show'question.explanation'>{{ question.explanation }}</p>
+            <br>
+        </div>
+
+        <div class='button' ng-show='more_questions' ng-click='getquestions()'>{{ get_questions_message }}</div>
+    </div>
+</div>
+
+<img src="static/loading.gif" ng-show="loading">
+
+<span class='error' ng-show="error">
+    There was a major service error, please try again later.
+</span>

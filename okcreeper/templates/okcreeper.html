@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>OkCreeper</title>
+		{% if not config['DEBUG'] %}
+		<base href="/okcreeper/"/>
+		{% endif %}
+		<meta name="description" content="Creep on okcupid profiles anonymously">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="{{ asset_url + 'font-awesome.min.css' }}">
+		<link rel="stylesheet" href="{{ asset_url + 'main.css' }}">
+		<link rel="shortcut icon" href="{{ asset_url + 'favicon.ico' }}">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script src="{{ asset_url + 'controller.js' }}"></script>
+
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-29634915-1']);
+		  _gaq.push(['_setDomainName', 'heyimalex.com']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+	</head>
+	<body>
+		{% raw %}
+		<div id='jump'>
+			<i class="icon-double-angle-up"></i>
+		</div>
+		<div id='main' ng-app='creep'>
+			<h1>OkCreeper</h1>
+			<p>
+				OkCreeper makes creepin on OkCupid easy. Browse profiles anonymously without having to switch between accounts or turn on anonymous browsing. All you have to do is enter the username you want to look up and click the button below. Questions and comments go to <a href='mailto:alex@heyimalex.com'>alex@heyimalex.com</a>.
+			</p>
+			<input id='username' ng-model="username" type='text' autofocus>
+			<a class='button' href="#/{{username}}">creep</a>
+			<div ng-view></div>
+			<div id='foot'><a href='http://heyimalex.com'>Alex Guerra // HeyImAlex</a></div>
+		</div>
+		{% endraw %}
+	</body>
+</html>

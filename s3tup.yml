@@ -1,0 +1,12 @@
+---
+- bucket: okcreeper_assets
+  canned_acl: public-read
+  rsync:
+    src: okcreeper/static
+  key_config:
+    - patterns: ['*']
+      canned_acl: public-read
+      reduced_redundancy: true
+      cache_control: 'max-age=32850000'
+    - patterns: ['*.css']
+      content_type: text/css

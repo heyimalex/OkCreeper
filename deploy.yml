@@ -1,0 +1,13 @@
+---
+- hosts: heyimsmall
+  gather_facts: no
+  sudo: yes
+  tasks:
+    - name: install lxml
+      apt: pkg=$item
+      with_items:
+        - libxml2-dev
+        - libxslt1-dev
+    - include: devops/deploy/flask_app.yml
+      vars:
+        app_name: okcreeper
